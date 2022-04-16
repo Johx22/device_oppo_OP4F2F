@@ -5,7 +5,7 @@ on init
     export PATH /sbin:/system/bin:/vendor/bin:/vendor/bin/hw
 
 on fs
-    start predecrypt
+    start prepdecrypt
 
 service keystore_auth /system/bin/keystore_auth
     oneshot
