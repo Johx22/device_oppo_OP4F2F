@@ -115,3 +115,7 @@ TW_INCLUDE_LOGICAL := oppo_product oppo_engineering common_preload
 # Debug
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
+
+#PBRP flags
+PB_TORCH_PATH := /proc/qcom_flash
+PB_TORCH_MAX_BRIGHTNESS := 1
