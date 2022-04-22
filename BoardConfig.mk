@@ -109,7 +109,11 @@ TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_DEFAULT_BRIGHTNESS := 900
 TW_MAX_BRIGHTNESS := 2047
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
-TW_OZIP_DECRYPT_KEY := "0000"
+TW_OZIP_DECRYPT_KEY := 0000
+
+# resetprop and magiskboot
+TW_INCLUDE_RESETPROP := true
+TW_INCLUDE_REPACKTOOLS := true
 
 # Debug
 TWRP_INCLUDE_LOGCAT := true
