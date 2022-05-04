@@ -83,6 +83,9 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export OF_CLOCK_POS=1
 	export OF_ALLOW_DISABLE_NAVBAR=0
 
+  #Magisk Add-on
+  export FOX_USE_SPECIFIC_MAGISK_ZIP="$PWD/device/oppo/OP4F2F/magisk/Magisk-v24.3.zip"
+
 	# let's see what are our build VARs
 	if [ -n "$FOX_BUILD_LOG_FILE" -a -f "$FOX_BUILD_LOG_FILE" ]; then
 		export | grep "FOX" >> $FOX_BUILD_LOG_FILE
