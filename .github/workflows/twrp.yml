@@ -1,4 +1,4 @@
-name: Make S20 FE (Snapdragon) Recovery
+name: TWRP builder
 
 on:
   workflow_dispatch:
