@@ -1,9 +1,12 @@
 on init
     export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw
     export PATH /sbin:/system/bin:/vendor/bin:/vendor/bin/hw
+    mkdir /mnt/vendor/persist
+    mount ext4 /dev/block/by-name/persist /mnt/vendor/persist rw
 
 on fs
-    start prepdecrypt
+    install_keyring
+    setprop crypto.ready 1
     write /sys/class/power_supply/usb/otg_switch 1
 
 service keystore_auth /system/bin/keystore_auth
@@ -28,13 +31,13 @@ service mobicore /vendor/bin/mcDriverDaemon --P1 /mnt/vendor/persist/mcRegistry 
     disabled
     seclabel u:r:recovery:s0
 
-service hal_cryptoeng_oppo /system/bin/vendor.oppo.hardware.cryptoeng@1.0-service
+service hal_cryptoeng_oppo /system/bin/hw/vendor.oplus.hardware.cryptoeng@1.0-service
     user root
     group root drmrpc
     disabled
     seclabel u:r:recovery:s0
 
-service gatekeeper-1-0 /system/bin/android.hardware.gatekeeper@1.0-service
+service gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service
     user root
     group root
     disabled
@@ -46,19 +49,7 @@ service keymaster-4-0 /system/bin/android.hardware.keymaster@4.0-service.truston
     disabled
     seclabel u:r:recovery:s0
 
-service prepdecrypt /system/bin/prepdecrypt.sh
-    user root
-    group root
-    disabled
-    oneshot
-    seclabel u:r:recovery:s0
-
-on property:crypto.ready=1 && property:ro.crypto.state=encrypted
-    mkdir /mnt/vendor/persist
-    mount ext4 /dev/block/by-name/persist /mnt/vendor/persist rw
-    install_keyring
-
-on property:crypto.ready=1 && property:hwservicemanager.ready=true
+on property:hwservicemanager.ready=true
     start hal_cryptoeng_oppo
     start mobicore
     start keymaster-4-0
