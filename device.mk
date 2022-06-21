@@ -22,16 +22,3 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 # Fastbootd
 PRODUCT_PACKAGES += \
 	android.hardware.fastboot@1.0-impl-mock
-
-# Additional Libraries
-TARGET_RECOVERY_DEVICE_MODULES += \
-	libkeymaster4 \
-	libpuresoftkeymasterdevice \
-	ashmemd_aidl_interface-cpp \
-	libashmemd_client
-
-RECOVERY_LIBRARY_SOURCE_FILES += \
-	$(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
-	$(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so \
-	$(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
-	$(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so

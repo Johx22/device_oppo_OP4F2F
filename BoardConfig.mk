@@ -34,6 +34,7 @@ TARGET_2ND_CPU_VARIANT := generic
 
 # Kernel
 BOARD_KERNEL_CMDLINE :=	bootopt=64S3,32N2,64N2 androidboot.selinux=permissive
+BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_INCLUDE_RECOVERY_DTBO := true
 BOARD_BOOTIMG_HEADER_VERSION := 2
 BOARD_KERNEL_BASE := 0x40078000
@@ -50,8 +51,6 @@ BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
-
-BOARD_KERNEL_IMAGE_NAME := Image
 
 # File systems
 BOARD_HAS_LARGE_FILESYSTEM := true
@@ -97,6 +96,18 @@ BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 2
 PLATFORM_SECURITY_PATCH := 2099-12-31
 VENDOR_SECURITY_PATCH := 2099-12-31
 PLATFORM_VERSION := 20.1.0
+
+TARGET_RECOVERY_DEVICE_MODULES += \
+	libkeymaster4 \
+	libpuresoftkeymasterdevice \
+	ashmemd_aidl_interface-cpp \
+	libashmemd_client
+
+TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
+	$(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
+	$(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so \
+	$(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
+	$(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so
 
 # TWRP Configuration
 TW_THEME := portrait_hdpi
