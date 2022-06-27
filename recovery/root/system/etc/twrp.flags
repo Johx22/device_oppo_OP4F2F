@@ -7,7 +7,6 @@
 
 # Symlinked partitions
 /system_image	    emmc		/dev/block/mapper/system			flags=backup=0;flashimg;display="System Image"
-/system           ext4    /dev/block/mapper/system      flags=backup=1;display="System";wipeingui
 
 /super            emmc    /dev/block/platform/bootdevice/by-name/super        flags=display="Super Image";backup=0;flashimg=1
 /recovery	        emmc	/dev/block/platform/bootdevice/by-name/recovery		    flags=display="Recovery";backup=1
